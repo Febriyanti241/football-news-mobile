@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football_news/screens/menu.dart';
-// TODO: Impor halaman NewsFormPage jika sudah dibuat
 import 'package:football_news/screens/newlist_form.dart';
-import 'package:football_news/widgets/news_card.dart';
+import 'package:football_news/screens/news_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -13,10 +12,7 @@ class LeftDrawer extends StatelessWidget {
       child: ListView(
         children: [
           const DrawerHeader(
-            // TODO: Bagian drawer header
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Column(
               children: [
                 Text(
@@ -29,31 +25,27 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text("Seluruh berita sepak bola terkini di sini!",
-                  // TODO: Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
-                  textAlign: TextAlign.center,
+                Text(
+                  "Seluruh berita sepak bola terkini di sini!",
+                  textAlign: TextAlign.center, // center alignment
                   style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
+                    fontSize: 15, // font ukuran 15
+                    color: Colors.white, // warna putih
+                    fontWeight: FontWeight.normal, // weight biasa
                   ),
-                )
+                ),
               ],
             ),
           ),
-
-
-          // TODO: Bagian routing
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Home'),
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ));
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
             },
           ),
           ListTile(
@@ -61,20 +53,26 @@ class LeftDrawer extends StatelessWidget {
             title: const Text('Add News'),
             // Bagian redirection ke NewsFormPage
             onTap: () {
-              /*
-              TODO: Buatlah routing ke NewsFormPage di sini,
-              setelah halaman NewsFormPage sudah dibuat.
-              */
-              Navigator.pushReplacement(
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NewsFormPage()),
+              );
+            },
+          ),
+          // Add this ListTile in your drawer
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('News List'),
+            onTap: () {
+              // Route to news list page
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const NewsFormPage(),
+                  builder: (context) => const NewsEntryListPage(),
                 ),
               );
             },
           ),
-          // TODO: Buat ListTile baru untuk ke halaman melihat news
-
         ],
       ),
     );
